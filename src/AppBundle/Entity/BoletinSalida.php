@@ -5,14 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Boletin
+ * BoletinSalida
  *
- * @ORM\Table(name="boletin")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\BoletinRepository") 
- * 
- */ 
-
-class Boletin
+ * @ORM\Table(name="boletin_salida")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BoletinSalidaRepository")
+ */
+class BoletinSalida
 {
     /**
      * @var int
@@ -26,21 +24,28 @@ class Boletin
     /**
      * @var string
      *
-     * @ORM\Column(name="agente", type="string", length=150)
+     * @ORM\Column(name="agente", type="string", length=30)
      */
     private $agente;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="dni", type="string", length=10, unique=true)
+     * @ORM\Column(name="dni", type="string", length=10)
      */
     private $dni;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="dependencia", type="string", length=255)
+     */
+    private $dependencia;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime")
+     * @ORM\Column(name="fecha", type="date")
      */
     private $fecha;
 
@@ -54,7 +59,7 @@ class Boletin
     /**
      * @var string
      *
-     * @ORM\Column(name="destino", type="string", length=255, nullable=true)
+     * @ORM\Column(name="destino", type="string", length=250, nullable=true)
      */
     private $destino;
 
@@ -77,15 +82,9 @@ class Boletin
      *
      * @ORM\Column(name="tiempoTotal", type="integer")
      */
-    private $tiempoTotal; 
+    private $tiempoTotal;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Dependencia")
-     * @ORM\JoinColumn(name="dependencia_id", referencedColumnName="id")
-     */
-    private $dependencia;
 
-    
     /**
      * Get id
      *
@@ -101,7 +100,7 @@ class Boletin
      *
      * @param string $agente
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setAgente($agente)
     {
@@ -125,7 +124,7 @@ class Boletin
      *
      * @param string $dni
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setDni($dni)
     {
@@ -145,11 +144,35 @@ class Boletin
     }
 
     /**
+     * Set dependencia
+     *
+     * @param string $dependencia
+     *
+     * @return BoletinSalida
+     */
+    public function setDependencia($dependencia)
+    {
+        $this->dependencia = $dependencia;
+
+        return $this;
+    }
+
+    /**
+     * Get dependencia
+     *
+     * @return string
+     */
+    public function getDependencia()
+    {
+        return $this->dependencia;
+    }
+
+    /**
      * Set fecha
      *
      * @param \DateTime $fecha
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setFecha($fecha)
     {
@@ -173,7 +196,7 @@ class Boletin
      *
      * @param string $tipo
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setTipo($tipo)
     {
@@ -197,7 +220,7 @@ class Boletin
      *
      * @param string $destino
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setDestino($destino)
     {
@@ -221,7 +244,7 @@ class Boletin
      *
      * @param \DateTime $horaSalida
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setHoraSalida($horaSalida)
     {
@@ -245,7 +268,7 @@ class Boletin
      *
      * @param \DateTime $horaRegreso
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setHoraRegreso($horaRegreso)
     {
@@ -269,7 +292,7 @@ class Boletin
      *
      * @param integer $tiempoTotal
      *
-     * @return Boletin
+     * @return BoletinSalida
      */
     public function setTiempoTotal($tiempoTotal)
     {
@@ -286,26 +309,6 @@ class Boletin
     public function getTiempoTotal()
     {
         return $this->tiempoTotal;
-    }
-
-    /**
-     * Get the value of dependencia
-     */ 
-    public function getDependencia()
-    {
-        return $this->dependencia;
-    }
-
-    /**
-     * Set the value of dependencia
-     *
-     * @return  self
-     */ 
-    public function setDependencia($dependencia)
-    {
-        $this->dependencia = $dependencia;
-
-        return $this;
     }
 }
 

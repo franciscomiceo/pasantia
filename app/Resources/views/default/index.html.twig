@@ -7,7 +7,7 @@
                 <h1><span>Boletin de salida temporaria</span> </h1>
             </div>
 
-            <div id="status">
+            {# <div id="status">
                 <p>
                    <form action="default/boletinsalida.html.twig" method="get" >
                    <center> 
@@ -21,6 +21,18 @@
                     </form>
                     
                 </p>
+            </div> #}
+
+            <div id="menu">
+                <p>
+                    <button onclick="location.href={{ path("new") }}">Back to Home</button>
+                    <a class="btn btn-primary" href="{{ path("new") }}" >ir al new </a>
+                </p>
+                
+                <p>
+                 <a href="{{ path("boletinsalida") }}" >ir a boletinSalida </a>   
+                </p>
+
             </div>
 
             <div id="next">
